@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>BASIC CGI APPLICATION</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,900;1,400&display=swap" rel="stylesheet">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<style type="text/css">
+		body{
+			margin: 0;
+			padding: 0;
+			font-family: 'Lato', sans-serif;
+		}
+		div.boxContainer{
+			border: 2px solid #375C84;
+			width: 600px;
+			height: 300px;
+			background: #4BACC6;
+			margin-left: 500px;
+			margin-top: 200px;
+		}
+		div form span.values{
+			color: #000;
+			margin: 0 270px 0 50px;
+		}
+		div form input.slider{
+			width: 300px;
+			margin-left: 50px;
+			padding: 5px;
+			/*-webkit-appearance: none;
+			background: #00FF00; */
+		}
+		div form input.slider::-webkit-slider-thumb{
+			/* -webkit-appearance: none; */
+			background: #fff;
+		    width: 20px;
+		    height: 20px;
+		    border-radius: 50%;
+		}
+		div form span.value, div form input.save, div form input.cancel{
+			border: 2px solid #375C84;
+			background: #4F81BD;
+			color: #fff;
+		}
+		div form span.strt{
+			margin-left: 44px;
+		}
+		div form span.bar{
+			padding: 0 10px 0 11px;
+			font-weight: 900; 
+		}
+		div form span.value{
+			margin-left: 80px;
+			padding: 5px 30px 5px 30px;
+		}
+		div form input.save{
+			margin: 70px 170px;
+		}
+		input:focus{
+			outline: none;
+			border: none;
+		}
+	</style>
+</head>
+<body>
+	<div class="boxContainer">
+		<form action="storeData.py" method="get">
+			<p style="background: #4BACC6; margin-bottom: 70px;"></p>
+			<span class="values">0</span><span class="valuee">120</span><br/>
+			<input type="range" name="first_range" min="0" max="120" id="slider1" value="0" class="slider"/> &nbsp;<span class="value" id="val1">0</span><br />
+			<span class="values">0</span><span class="valuee">120</span><br/>
+			<input type="range" name="second_range" min="0" max="120" id="slider2" value="0" class="slider" step="10"/> &nbsp;<span class="value" id="val2">0</span><br/>
+			<span class="bar strt" >.</span><span class="bar" >.</span><span class="bar" >.</span><span class="bar" >.</span><span class="bar" >.</span><span class="bar" >.</span><span class="bar" >.</span><span class="bar" >.</span><span class="bar" >.</span><span class="bar" >.</span><span class="bar" >.</span><span class="bar" >.</span><span class="bar" >.</span><br/>
+			<input type="submit" value="Save" id="save" class="save"/><input type="reset" name="cancel" value="Cancel" id="cancel" class="cancel"/>
+		</form>
+	</div>
+	<script type="text/javascript">
+		var slider_1 = document.getElementById('slider1');
+		var val_1 = document.getElementById('val1');
+		val_1.innerHTML = slider_1.value;
+		slider_1.oninput = function(){
+			val_1.innerHTML = this.value;
+		}
+		var slider_2 = document.getElementById('slider2');
+		var val_2 = document.getElementById('val2');
+		val_2.innerHTML = slider_2.value;
+		slider_2.oninput = function(){
+			val_2.innerHTML = this.value;
+		}
+		$("#cancel").on('click', function(event) {
+		    val_1.innerHTML = 0;
+		    val_2.innerHTML = 0;
+		});
+	</script>
+</body>
+</html>
